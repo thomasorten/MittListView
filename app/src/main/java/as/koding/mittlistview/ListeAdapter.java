@@ -1,6 +1,7 @@
 package as.koding.mittlistview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,18 +26,28 @@ public class ListeAdapter extends ArrayAdapter<Person> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
         if(v == null){
             LayoutInflater vi;
             vi = LayoutInflater.from(this.context);
             v = vi.inflate(R.layout.list_item, null);
         }
-        Person person = this.personList.get(position);
+        final Person person = this.personList.get(position);
         TextView t1 = (TextView)v.findViewById(R.id.fornavn);
         TextView t2 = (TextView)v.findViewById(R.id.etternavn);
         t1.setText(person.getFornavn());
         t2.setText(person.getEtternavn());
+
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("position", position);
+                context.startActivity(intent);
+            }
+        });
+
         return v;
     }
 }

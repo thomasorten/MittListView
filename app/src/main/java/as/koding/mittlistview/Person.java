@@ -21,6 +21,8 @@ public class Person {
     public Person(String fornavn, String etternavn) {
         this.fornavn = fornavn;
         this.etternavn = etternavn;
+        this.telefon = 12345678;
+        this.addresse = "Not found";
     }
 
     public String getFornavn() {
@@ -39,8 +41,8 @@ public class Person {
         this.etternavn = etternavn;
     }
 
-    public int getTelefon() {
-        return telefon;
+    public String getTelefon() {
+        return String.valueOf(telefon);
     }
 
     public void setTelefon(int telefon) {
